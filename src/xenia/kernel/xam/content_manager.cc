@@ -98,7 +98,17 @@ std::vector<XCONTENT_AGGREGATE_DATA> ContentManager::ListContent(
     XCONTENT_AGGREGATE_DATA content_data;
     content_data.device_id = device_id;
     content_data.content_type = content_type;
-    content_data.set_display_name(xe::path_to_utf16(file_info.name));
+    
+    if (file_info.name.filename() == "496F816DD4B53DAEFF931838B6C69831AAD7663043") {
+      content_data.set_display_name(u"虫姫さまふたり　ブラックレーベル");
+    }
+    else if (file_info.name.filename() == "9893A78CA6062B935BD1F53EA43CFD546B7246DF43") {
+      content_data.set_display_name(u"虫姫さまふたり　Ver1.01");
+    }
+    else {
+      content_data.set_display_name(xe::path_to_utf16(file_info.name));
+    }
+
     content_data.set_file_name(xe::path_to_utf8(file_info.name));
     content_data.title_id = title_id;
     result.emplace_back(std::move(content_data));
